@@ -8,7 +8,21 @@ public class Film {
 
     public Film(){
     }
-    public Film(int id, String imageUrl, String filmName, String filmGenre) {
+    public Film(int filmId, String imageUrl, String filmName, String filmGenre) {
+        this.filmId = filmId;
+        this.imageUrl = imageUrl;
+        this.filmName = filmName;
+        this.filmGenre = filmGenre;
+    }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "filmId=" + filmId +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", filmName='" + filmName + '\'' +
+                ", filmGenre='" + filmGenre + '\'' +
+                '}';
     }
 
     public void setFilmId(int filmId){

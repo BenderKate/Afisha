@@ -6,7 +6,7 @@ public class FilmManager {
     private Film[] films = new Film[filmAmount];
 
     public FilmManager() {
-        int filmAmount = 10;
+        this.filmAmount = 10;
     }
 
     public FilmManager(int filmAmount) {
@@ -16,7 +16,7 @@ public class FilmManager {
     public void addFilms(Film film) {
         int length = films.length + 1;
         Film[] tmp = new Film[length];
-        System.arraycopy(films, 0, tmp, 0, films.length);
+        System.arraycopy(films, 0, tmp, 0, length - 1);
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = film;
         films = tmp;
@@ -24,18 +24,17 @@ public class FilmManager {
 
 
     public Film[] getFilms() {
-        int resultLength;
-        if (filmAmount < 10) {
-            resultLength = filmAmount;
-        } else {
-            resultLength = 10;
-        }
-
-        Film[] result = new Film[resultLength];
-        for (int i = 0; i < resultLength; i++) {
+        Film[] tmpresult = new Film[filmAmount];
+        int counter = 0;
+        for (int i = 0; i < filmAmount; i++) {
             int index = films.length - i - 1;
-            result[i] = films[index];
+            if(films[index] != null){
+                tmpresult[counter] = films[index];
+                counter += 1;
+            }
         }
+        Film[] result = new Film[counter];
+        System.arraycopy(tmpresult, 0, result, 0, counter );
         return result;
     }
 

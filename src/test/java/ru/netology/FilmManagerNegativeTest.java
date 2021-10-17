@@ -1,11 +1,12 @@
 package ru.netology;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-class FilmManagerTest {
+public class FilmManagerNegativeTest {
+    FilmManager manager10films = new FilmManager();
+    FilmManager manager5films = new FilmManager(5);
 
     private Film first = new Film(1, "url1", "Film1", "Genre1");
     private Film second = new Film(2, "url2", "Film2", "Genre2");
@@ -20,50 +21,30 @@ class FilmManagerTest {
     private Film eleventh = new Film(11, "url11", "Film11", "Genre11");
     private Film twelfth = new Film(12, "url12", "Film12", "Genre12");
 
-    FilmManager manager = new FilmManager(5);
-
-    @BeforeEach
-    public void setUp() {
-        manager.addFilms(first);
-        manager.addFilms(second);
-        manager.addFilms(third);
-        manager.addFilms(fourth);
-        manager.addFilms(fifth);
-        manager.addFilms(sixth);
-        manager.addFilms(seventh);
-        manager.addFilms(eight);
-        manager.addFilms(ninth);
-        manager.addFilms(tenth);
-        manager.addFilms(eleventh);
-        manager.addFilms(twelfth);
-    }
-
-
     @Test
-    public void shouldAddFilm() {
-        manager.addFilms(first);
+    public void shouldGetAllWith5() {
+        manager5films.addFilms(fifth);
+        manager5films.addFilms(sixth);
+        manager5films.addFilms(seventh);
         Film[] expected = new Film[]{
-                first,
-                twelfth,
-                eleventh,
-                tenth,
-                ninth};
-        Film[] actual = manager.getFilms();
+                seventh,
+                sixth,
+                fifth};
+        Film[] actual = manager5films.getFilms();
         assertArrayEquals(expected, actual);
     }
 
-
     @Test
-    void shouldGetAllFilms() {
+    public void shouldGetAllWith10() {
+        manager10films.addFilms(fifth);
+        manager10films.addFilms(sixth);
+        manager10films.addFilms(seventh);
         Film[] expected = new Film[]{
-                twelfth,
-                eleventh,
-                tenth,
-                ninth,
-                eight};
-        Film[] actual = manager.getFilms();
+                seventh,
+                sixth,
+                fifth};
+        Film[] actual = manager10films.getFilms();
         assertArrayEquals(expected, actual);
     }
-
 
 }
